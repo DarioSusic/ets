@@ -33,15 +33,33 @@
         </a>
       </div>
       <div class="sidebar-wrapper">
-        <ul class="nav">
+        <ul class="nav menu">
 
           <li class="nav-item active">
-            <a class="nav-link" href="#dashboard">
+            <a class="nav-link " href="#dashboard">
               <i class="material-icons">dashboard</i>
               <p>Dashboard</p>
             </a>
           </li>
-          
+          <li class="nav-item ">
+            <a class="nav-link" href="#user">
+              <i class="material-icons">person</i>
+              <p>User Profile</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#table">
+              <i class="material-icons">content_paste</i>
+              <p>Table List</p>
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href="#map">
+              <i class="material-icons">location_ons</i>
+              <p>Maps</p>
+            </a>
+          </li>
+     
         </ul>
       </div>
     </div>
@@ -49,6 +67,10 @@
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
+          <div class="navbar-wrapper">
+            <!--TODO automatically assign text-->
+            <a class="navbar-brand" href="#">TO DO</a>
+          </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
             <span class="navbar-toggler-icon icon-bar"></span>
@@ -56,13 +78,54 @@
             <span class="navbar-toggler-icon icon-bar"></span>
           </button>
           <div class="collapse navbar-collapse justify-content-end">
+            <form class="navbar-form">
+              <div class="input-group no-border">
+                <input type="text" value="" class="form-control" placeholder="Search...">
+                <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                  <i class="material-icons">search</i>
+                  <div class="ripple-container"></div>
+                </button>
+              </div>
+            </form>
             <ul class="navbar-nav">
               <li class="nav-item">
                 <a class="nav-link" href="#">
-                  <i class="material-icons">notifications</i> Notifications
+                  <i class="material-icons">dashboard</i>
+                  <p class="d-lg-none d-md-block">
+                    Stats
+                  </p>
                 </a>
               </li>
-              <!-- your navbar here -->
+              <li class="nav-item dropdown">
+                <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="material-icons">notifications</i>
+                  <span class="notification">5</span>
+                  <p class="d-lg-none d-md-block">
+                    Some Actions
+                  </p>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="#">Mike John responded to your email</a>
+                  <a class="dropdown-item" href="#">You have 5 new tasks</a>
+                  <a class="dropdown-item" href="#">You're now friend with Andrew</a>
+                  <a class="dropdown-item" href="#">Another Notification</a>
+                  <a class="dropdown-item" href="#">Another One</a>
+                </div>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link" href="#" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="material-icons">person</i>
+                  <p class="d-lg-none d-md-block">
+                    Account
+                  </p>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
+                  <a class="dropdown-item" href="#">Profile</a>
+                  <a class="dropdown-item" href="#">Settings</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Log out</a>
+                </div>
+              </li>
             </ul>
           </div>
         </div>
@@ -74,6 +137,9 @@
         <div class="container-fluid">
           <main id="spapp" role="main">
             <section id="dashboard"></section>
+            <section id="user"></section>
+            <section id="map"></section>
+            <section id="table"></section>
           </main>
         </div>
       </div>
@@ -81,12 +147,21 @@
     </div>
   </div>
 </body>
- <!--   Core JS Files   -->
+  <!--   Core JS Files   -->
   <script src="assets/js/core/jquery.min.js"></script>
   <script src="assets/js/core/popper.min.js"></script>
   <script src="assets/js/core/bootstrap-material-design.min.js"></script>
   <script src="assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-<!-- Used for SPAPP -->
+  <!-- Chartist JS -->
+  <script src="assets/js/plugins/chartist.min.js"></script>
+  <!--  Notifications Plugin    -->
+  <script src="assets/js/plugins/bootstrap-notify.js"></script>
+  <!--  Google Maps Plugin    -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBlCB8WMmP8EWU7giPeTz_42uYeF_ZfChg"></script>
+  <!-- Material Dashboard DEMO methods, don't include it in your project! -->
+  <script src="assets/demo/demo.js"></script>
+
+  <!-- Used for SPAPP -->
   <script src="assets/spapp/js/jquery.spapp.js"></script> 
   <script>
     $(document).ready(function() {
@@ -95,9 +170,21 @@
                         pageNotFound : 'error_404'}); 
       // initialize
       app.route({view: 'dashboard', load: 'dashboard.html' });
+      app.route({view: 'user', load: 'user.html' });
+      app.route({view: 'map', load: 'map.html' });
+      app.route({view: 'table', load: 'tables.html' });
       // run app
       app.run();
     });
+  </script>
+<!-- Sets current element to active -->
+  <script type="text/javascript">
+    $(function() {
+    $('.menu .nav-item').click(function(e) {
+        $('.menu .nav-item').not(this).removeClass('active');
+        $(this).addClass('active');
+    });
+});
   </script>
 
 </html>
