@@ -9,5 +9,7 @@
             "email": "hello@creative-tim.com"
         }
     ],
-    "require": {}
+    "require": {
+        "mikecao/flight": "^1.3"
+    }
 }
