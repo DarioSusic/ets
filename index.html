@@ -1,166 +1,166 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+  <head>
+    <title>Expense Tracking System</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <!-- Fonts and icons -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <!-- Material Kit CSS -->
+    <link href="assets/css/material-dashboard-pro.min.css" rel="stylesheet" />
+    <!-- SPAPP CSS -->
+    <link href="assets/spapp/css/spapp.css" rel="stylesheet">
+  </head>
 
-<head>
-  <title>Expense Tracking System</title>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <!-- Fonts and icons -->
-  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-  <!-- Material Kit CSS -->
-  <link href="assets/css/material-dashboard-pro.min.css" rel="stylesheet" />
-  <!-- SPAPP CSS -->
-  <link href="assets/spapp/css/spapp.css" rel="stylesheet">
-</head>
+  <body>
+    <div class="wrapper ">
+      <div class="sidebar" data-color="purple" data-background-color="white">
+        <!--
+        Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
-<body>
-  <div class="wrapper ">
-    <div class="sidebar" data-color="purple" data-background-color="white">
-      <!--
-      Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
-
-      Tip 2: you can also add an image using data-image tag
-  -->
-      <div class="logo">
-        <a href="#" class="simple-text logo-mini">
-          ETS
-        </a>
-        <a href="#" class="simple-text logo-normal">
-          Expense Tracking System
-        </a>
-      </div>
-      <div class="sidebar-wrapper">
-        <ul class="nav menu">
-
-          <li class="nav-item active">
-            <a class="nav-link " href="#dashboard">
-              <i class="material-icons">dashboard</i>
-              <p>Dashboard</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link " href="#budget">
-              <i class="material-icons">account_balance_wallet</i>
-              <p>Budget</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link " href="#transaction">
-              <i class="material-icons">credit_card</i>
-              <p>Transactions</p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="#user">
-              <i class="material-icons">person</i>
-              <p>User Profile</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#table">
-              <i class="material-icons">content_paste</i>
-              <p>Table List</p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="#map">
-              <i class="material-icons">location_ons</i>
-              <p>Maps</p>
-            </a>
-          </li>
-     
-        </ul>
-      </div>
-    </div>
-    <div class="main-panel">
-      <!-- Navbar -->
-      <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
-        <div class="container-fluid">
-          <div class="navbar-wrapper">
-            <!--TODO automatically assign text-->
-            <a class="navbar-brand" href="#">TO DO</a>
-          </div>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-            <span class="navbar-toggler-icon icon-bar"></span>
-          </button>
-          <div class="collapse navbar-collapse justify-content-end">
-            <form class="navbar-form">
-              <div class="input-group no-border">
-                <input type="text" value="" class="form-control" placeholder="Search...">
-                <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                  <i class="material-icons">search</i>
-                  <div class="ripple-container"></div>
-                </button>
-              </div>
-            </form>
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <i class="material-icons">dashboard</i>
-                  <p class="d-lg-none d-md-block">
-                    Stats
-                  </p>
-                </a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="material-icons">notifications</i>
-                  <span class="notification">5</span>
-                  <p class="d-lg-none d-md-block">
-                    Some Actions
-                  </p>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">Mike John responded to your email</a>
-                  <a class="dropdown-item" href="#">You have 5 new tasks</a>
-                  <a class="dropdown-item" href="#">You're now friend with Andrew</a>
-                  <a class="dropdown-item" href="#">Another Notification</a>
-                  <a class="dropdown-item" href="#">Another One</a>
-                </div>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link" href="#" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="material-icons">person</i>
-                  <p class="d-lg-none d-md-block">
-                    Account
-                  </p>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                  <a class="dropdown-item" href="#user">Profile</a>
-                  <a class="dropdown-item" href="#">Settings</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Log out</a>
-                </div>
-              </li>
-            </ul>
-          </div>
+        Tip 2: you can also add an image using data-image tag
+    -->
+        <div class="logo">
+          <a href="#" class="simple-text logo-mini">
+            ETS
+          </a>
+          <a href="#" class="simple-text logo-normal">
+            Expense Tracking System
+          </a>
         </div>
-      </nav>
-      <!-- End Navbar -->
+        <div class="sidebar-wrapper">
+          <ul class="nav menu">
 
-      <!-- SPAPP Content -->
-      <div class="content">
-        <div class="container-fluid">
-          <main id="spapp" role="main">
-            <section id="dashboard"></section>
-            <section id="budget"></section>
-            <section id="transaction"></section>
-            <section id="user"></section>
-            <section id="map"></section>
-            <section id="table"></section>
-          </main>
+            <li class="nav-item active">
+              <a class="nav-link " href="#dashboard">
+                <i class="material-icons">dashboard</i>
+                <p>Dashboard</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link " href="#budget">
+                <i class="material-icons">account_balance_wallet</i>
+                <p>Budget</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link " href="#transaction">
+                <i class="material-icons">credit_card</i>
+                <p>Transactions</p>
+              </a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="#user">
+                <i class="material-icons">person</i>
+                <p>User Profile</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#table">
+                <i class="material-icons">content_paste</i>
+                <p>Table List</p>
+              </a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="#map">
+                <i class="material-icons">location_ons</i>
+                <p>Maps</p>
+              </a>
+            </li>
+       
+          </ul>
         </div>
       </div>
+      <div class="main-panel">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+          <div class="container-fluid">
+            <div class="navbar-wrapper">
+              <!--TODO automatically assign text-->
+              <a class="navbar-brand" href="#">TO DO</a>
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="navbar-toggler-icon icon-bar"></span>
+              <span class="navbar-toggler-icon icon-bar"></span>
+              <span class="navbar-toggler-icon icon-bar"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end">
+              <form class="navbar-form">
+                <div class="input-group no-border">
+                  <input type="text" value="" class="form-control" placeholder="Search...">
+                  <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                    <i class="material-icons">search</i>
+                    <div class="ripple-container"></div>
+                  </button>
+                </div>
+              </form>
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <i class="material-icons">dashboard</i>
+                    <p class="d-lg-none d-md-block">
+                      Stats
+                    </p>
+                  </a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="material-icons">notifications</i>
+                    <span class="notification">5</span>
+                    <p class="d-lg-none d-md-block">
+                      Some Actions
+                    </p>
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="#">Mike John responded to your email</a>
+                    <a class="dropdown-item" href="#">You have 5 new tasks</a>
+                    <a class="dropdown-item" href="#">You're now friend with Andrew</a>
+                    <a class="dropdown-item" href="#">Another Notification</a>
+                    <a class="dropdown-item" href="#">Another One</a>
+                  </div>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link" href="#" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="material-icons">person</i>
+                    <p class="d-lg-none d-md-block">
+                      Account
+                    </p>
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
+                    <a class="dropdown-item" href="#user">Profile</a>
+                    <a class="dropdown-item" href="#">Settings</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Log out</a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <!-- End Navbar -->
 
+        <!-- SPAPP Content -->
+        <div class="content">
+          <div class="container-fluid">
+            <main id="spapp" role="main">
+              <section id="dashboard"></section>
+              <section id="budget"></section>
+              <section id="transaction"></section>
+              <section id="user"></section>
+              <section id="map"></section>
+              <section id="table"></section>
+            </main>
+          </div>
+        </div>
+
+      </div>
     </div>
-  </div>
-</body>
+  </body>
+  
   <!--   Core JS Files   -->
   <script src="assets/js/core/jquery.min.js"></script>
   <script src="assets/js/core/popper.min.js"></script>
@@ -193,14 +193,15 @@
       app.run();
     });
   </script>
-<!-- Sets current element to active -->
+
+  <!-- Sets current element to active -->
   <script type="text/javascript">
     $(function() {
     $('.menu .nav-item').click(function(e) {
         $('.menu .nav-item').not(this).removeClass('active');
         $(this).addClass('active');
+        });
     });
-});
   </script>
 
 </html>
