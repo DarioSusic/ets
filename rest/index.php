@@ -5,11 +5,18 @@ Flight::register('db', 'PDO', array('mysql:host=localhost:3306;dbname=expense_tr
 
 Flight::route('/', function(){
     echo 'hello world!';
+    $cars = Flight::db()->query('SHOW tables', PDO::FETCH_ASSOC)->fetchAll();
+    Flight::json($cars);
 });
 
-Flight::route('GET /cars', function(){
-    $cars = Flight::db()->query('SELECT * FROM cars', PDO::FETCH_ASSOC)->fetchAll();
+Flight::route('GET /budget', function(){
+    $cars = Flight::db()->query('SELECT * FROM budget', PDO::FETCH_ASSOC)->fetchAll();
     Flight::json($cars);
+});
+
+Flight::route('GET /categories', function(){
+    $categories = Flight::db()->query('SELECT * FROM categories', PDO::FETCH_ASSOC)->fetchAll();
+    Flight::json($categories);
 });
 
 Flight::route('POST /cars', function(){
