@@ -163,9 +163,16 @@
   
   <!--   Core JS Files   -->
   <script src="assets/js/core/jquery.min.js"></script>
+  <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="assets/js/plugins/material.min.js"></script>
+  <script src="assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+
   <script src="assets/js/core/popper.min.js"></script>
   <script src="assets/js/core/bootstrap-material-design.min.js"></script>
-  <script src="assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+
+  <script src="assets/js/plugins/moment.min.js"></script>
+  
+
   <!-- Chartist JS -->
   <script src="assets/js/plugins/chartist.min.js"></script>
   <!--  Notifications Plugin    -->
@@ -174,6 +181,17 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBlCB8WMmP8EWU7giPeTz_42uYeF_ZfChg"></script>
   <!-- Material Dashboard DEMO methods, don't include it in your project! -->
   <script src="assets/demo/demo.js"></script>
+  <script src="assets/js/material-dashboard.js"></script>
+
+  <script src="assets/js/plugins/jquery.tagsinput.js"></script>
+
+  <script src="assets/js/plugins/nouislider.min.js"></script>
+
+
+
+  <script src="assets/js/plugins/bootstrap-datetimepicker.min.js"></script>
+  <script src="assets/js/plugins/fullcalendar.min.js"></script>
+  
 
   <!-- jQuery Modal -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
@@ -205,6 +223,15 @@
         $('.menu .nav-item').not(this).removeClass('active');
         $(this).addClass('active');
         });
+    });
+  </script>
+
+  
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+      md.initSliders()
+      demo.initFormExtendedDatetimepickers();
     });
   </script>
 
