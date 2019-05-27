@@ -1,1 +1,49 @@
-<p>TO DO ADD BUDGET</p>
+
+<div class="col-md-6">
+  <div class="card">
+    <form id="RegisterValidation" action="" method="" novalidate="novalidate">
+        <div class="card-header card-header-icon" data-background-color="rose">
+            <i class="material-icons">mail_outline</i>
+        </div>
+        <div class="card-content">
+            <h4 class="card-title">Register Forms</h4>
+            <div class="form-group label-floating is-empty">
+                <label class="control-label">
+                    Email Address
+                    <small>*</small>
+                </label>
+                <input class="form-control" name="email" type="email" required="true" aria-required="true">
+            <span class="material-input"></span></div>
+
+            <div class="form-group label-floating is-empty">
+                <label class="control-label">
+                    Password
+                    <small>*</small>
+                </label>
+                <input class="form-control" name="password" id="registerPassword" type="password" required="true" aria-required="true">
+            <span class="material-input"></span></div>
+
+            <div class="form-group label-floating is-empty">
+                <label class="control-label">
+                    Confirm Password
+                    <small>*</small>
+                </label>
+                <input class="form-control" name="password_confirmation" id="registerPasswordConfirmation" type="password" required="true" equalto="#registerPassword" aria-required="true">
+            <span class="material-input"></span></div>
+
+
+            <div class="category form-category"><small>*</small> Required fields</div>
+
+            <div class="form-footer text-right">
+                <div class="checkbox pull-left">
+                    <label>
+                        <input type="checkbox" name="optionsCheckboxes" required="true" aria-required="true"><span class="checkbox-material"><span class="check"></span></span>
+                        Subscribe to newsletter
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-rose btn-fill">Register</button>
+            </div>
+        </div>
+    </form>
+  </div>
+</div>
