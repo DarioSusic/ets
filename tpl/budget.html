@@ -1,49 +1,190 @@
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Budget</h1>
+    <!--<button type="button" id="myBtn" class="btn btn-primary" onclick="$('#add-budget-form').trigger('reset');">
+        <span class="btn-label">
+            <i class="material-icons">add</i>
+        </span>Add Budget
+        <div class="ripple-container"></div>
+    </button>-->
+</div>
 
-<div class="col-md-6">
-  <div class="card">
-    <form id="RegisterValidation" action="" method="" novalidate="novalidate">
-        <div class="card-header card-header-icon" data-background-color="rose">
-            <i class="material-icons">mail_outline</i>
-        </div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <form id="RegisterValidation" action="" method="" novalidate="novalidate">
         <div class="card-content">
-            <h4 class="card-title">Register Forms</h4>
-            <div class="form-group label-floating is-empty">
-                <label class="control-label">
-                    Email Address
-                    <small>*</small>
-                </label>
-                <input class="form-control" name="email" type="email" required="true" aria-required="true">
-            <span class="material-input"></span></div>
-
-            <div class="form-group label-floating is-empty">
-                <label class="control-label">
-                    Password
-                    <small>*</small>
-                </label>
-                <input class="form-control" name="password" id="registerPassword" type="password" required="true" aria-required="true">
-            <span class="material-input"></span></div>
-
-            <div class="form-group label-floating is-empty">
-                <label class="control-label">
-                    Confirm Password
-                    <small>*</small>
-                </label>
-                <input class="form-control" name="password_confirmation" id="registerPasswordConfirmation" type="password" required="true" equalto="#registerPassword" aria-required="true">
-            <span class="material-input"></span></div>
-
-
-            <div class="category form-category"><small>*</small> Required fields</div>
-
-            <div class="form-footer text-right">
-                <div class="checkbox pull-left">
-                    <label>
-                        <input type="checkbox" name="optionsCheckboxes" required="true" aria-required="true"><span class="checkbox-material"><span class="check"></span></span>
-                        Subscribe to newsletter
-                    </label>
-                </div>
-                <button type="submit" class="btn btn-rose btn-fill">Register</button>
+          <h4 class="card-title">Add Budget</h4>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group label-floating is-empty">
+                <label class="control-label">Budget Name<small>*</small></label>
+                <input class="form-control" name="budget_name" type="text" required="true" aria-required="true">
+                <span class="material-input"></span>
+              </div>
             </div>
+            <div class="col-md-6">
+              <div class="form-group label-floating is-empty">
+                <div class="md-form">
+                  <label class="control-label" name="budget_description" for="form7">Budget Description</label>
+                  <textarea id="form7" class="md-textarea form-control" name="budget_description" type="text" rows="1"></textarea>
+                  <span class="material-input"></span>
+                </div>
+              </div>
+            </div>  
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group label-floating is-empty">
+                <label for="start">Start date<small>*</small></label>
+                <input class="form-control" type="date" id="start" name="start_date" required="true" aria-required="true" min="2018-01-01" max="2048-12-31">
+                <span class="material-input"></span>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group label-floating is-empty">
+                <label for="end">End date</label>
+                <input class="form-control" type="date" id="end" name="end_date" min="2018-01-01" max="2048-12-31">
+                <span class="material-input"></span>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group label-floating is-empty">
+                <label for="category">Category<small>*</small></label>
+                <div class="dropdown">
+                  <input class="form-control dropdown-toggle" type="button" required="true" aria-required="true" data-toggle="dropdown">
+                  <span class="caret"></span>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">HTML</a></li>
+                    <li><a href="#">CSS</a></li>
+                    <li><a href="#">JavaScript</a></li>
+                  </ul>
+                </div>
+                <span class="material-input"></span>
+              </div>
+            </div>
+          </div>
+          <div class="category form-category"><small>*</small> Required fields</div>
+          <div class="form-footer text-center">
+              <button type="submit" class="btn btn-primary btn-fill">Add Budget</button>
+          </div>
         </div>
-    </form>
+      </form>
+    </div>
   </div>
 </div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header card-header-primary">
+        <h4 class="card-title ">Simple Table</h4>
+        <p class="card-category"> Here is a subtitle for this table</p>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class=" text-primary">
+              <th>
+                ID
+              </th>
+              <th>
+                Name
+              </th>
+              <th>
+                Country
+              </th>
+              <th>
+                City
+              </th>
+              <th>
+                Salary
+              </th>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  1
+                </td>
+                <td>
+                  Dakota Rice
+                </td>
+                <td>
+                  Niger
+                </td>
+                <td>
+                  Oud-Turnhout
+                </td>
+                <td class="text-primary">
+                  $36,738
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
+
+<div id="budget_container" class="row">
+
+</div>
+
+
+
+
+<script type="text/javascript">   
+function get_budget(){
+  $.get( "rest/budget", function( data ) {
+    console.log(data);
+    $('#budget_container').html('');
+    for(var i=0 ; i < data.length; i++){
+      $('#budget_container').append(budget2html(data[i]));
+    }
+  });
+}
+
+function budget2html(budget){
+  var budget_html = $('#budget_template').html();
+  budget_html = budget_html.replace('{{id}}', budget.budget_id);
+  budget_html = budget_html.replace('{{name}}', budget.budget_name);
+  budget_html = budget_html.replace('{{amount}}', budget.amount);
+  budget_html = budget_html.replace('{{start_date}}', budget.start_date);
+  budget_html = budget_html.replace('{{end_date}}', budget.end_date);
+  budget_html = budget_html.replace('{{created_by}}', budget.created_by);
+  return budget_html;
+}
+</script>
+
+
+<script id="budget_template" type="html/template">
+  <div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-primary shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div style="font-size: 20px;" class="text-xs font-weight-bold text-primary text-uppercase mb-1">{{name}}</div>
+            <div class="h7 mb-0 font-weight-bold text-gray-800">Year: {{id}}</div>
+            <div class="h7 mb-0 font-weight-bold text-gray-800">Power: {{name}}</div>
+            <div class="h7 mb-0 font-weight-bold text-gray-800">Fuel: {{amount}}</div>
+            <div class="h7 mb-0 font-weight-bold text-gray-800">CCM: {{start_date}}</div>
+            <div class="h7 mb-0 font-weight-bold text-gray-800">CCM: {{end_date}}</div>
+            <div class="h7 mb-0 font-weight-bold text-gray-800">CCM: {{created_by}}</div>
+          </div>
+          <div class="col-auto">
+            <a onclick="edit_car({{id}})" class="btn btn-warning btn-circle">
+              <i class="fas fa-edit"></i>
+            </a><br><br>
+            <a onclick="delete_car({{id}})" class="btn btn-danger btn-circle">
+              <i class="fas fa-trash"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</script>
+
+
+
