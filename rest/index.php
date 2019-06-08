@@ -9,15 +9,15 @@ Flight::register('pm', 'PersistenceManager', [Config::DB]);
 
 Flight::route('/', function(){
     echo 'hello world!';
-    $cars = Flight::db()->query('SHOW tables', PDO::FETCH_ASSOC)->fetchAll();
+    //$cars = Flight::db()->query('SHOW tables', PDO::FETCH_ASSOC)->fetchAll();
     Flight::json($cars);
 });
 
 /*All for budget*/
 
-Flight::route('GET /budget', function(){
-    $cars = Flight::db()->query('SELECT * FROM budget', PDO::FETCH_ASSOC)->fetchAll();
-    Flight::json($cars);
+Flight::route('GET /budget/@id', function($id){
+    $budget = Flight::pm()->get_all_budgets($id);
+    Flight::json($budget);
 });
 
 Flight::route('DELETE /delete_budget/@id', function($id){
@@ -26,20 +26,46 @@ Flight::route('DELETE /delete_budget/@id', function($id){
 });
 
 
-
-/*
-Flight::route('POST /budget', function($user_id){
-  $user = Flight::request()->data->volunteer;
-  $query = "INSERT INTO budget (budget_name, amount, start_date, created_by, created_date, category_id, user_id) 
-            VALUES (:budget_name, :amount, :start_date, :created_by, NOW(), :category_id, :user_id");
-});*/
-
-
+Flight::route('POST /budget', function(){
+  $request = Flight::request();
+  $budget = Flight::request()->data->budget;
+  $id = Flight::request()->data->id;
+  if ($id != ''){
+    $input = array(
+        "budget_id" => $id,
+        "budget_name" => $request->data->budget_name,
+        "budget_description" => $request->data->budget_description,
+        "start_date" => $request->data->start_date,
+        "end_date" => $request->data->end_date,
+        "category_id" => $request->data->category_id,
+        "amount" => $request->data->amount
+      );
+    Flight::pm()->edit_budget($input);
+    Flight::json(['message' => "Budget has been successfully edited"]);
+  }else{
+    $input = array(
+        "budget_name" => $request->data->budget_name,
+        "budget_description" => $request->data->budget_description,
+        "amount" => $request->data->amount,
+        "start_date" => $request->data->start_date,
+        "end_date" => $request->data->end_date,
+        "created_by" => "IME USERA POKUPITI",
+        "category_id" => $request->data->category_id,        
+        "user_id" => 10
+      );
+    Flight::pm()->create_budget($input);
+    Flight::json(['message' => "Budget has been successfully created"]);
+  }
+});
 
 /*All for categories*/
 
 Flight::route('GET /categories', function() {
     Flight::json(Flight::pm()->get_all_categories());
+});
+
+Flight::route('GET /occurances', function() {
+    Flight::json(Flight::pm()->get_all_occurances());
 });
 
 

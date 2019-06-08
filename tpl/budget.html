@@ -52,7 +52,8 @@
                 <label for="category">Category<small>*</small></label>
                 <div class="dropdown">
                   <input class="form-control dropdown-toggle" type="button" required="true" aria-required="true" data-toggle="dropdown">
-                  <ul class="dropdown-menu">
+                  <ul id="category_container" class="dropdown-menu">
+                    <!--Adding data from recurring_type table-->
                     <li><a href="#">HTML</a></li>
                     <li><a href="#">CSS</a></li>
                     <li><a href="#">JavaScript</a></li>
@@ -75,10 +76,8 @@
                 <label for="category">Occurance<small>*</small></label>
                 <div class="dropdown">
                   <input class="form-control dropdown-toggle" type="button" required="true" aria-required="true" data-toggle="dropdown">
-                  <ul class="dropdown-menu">
-                    <li><a href="#">HTML</a></li>
-                    <li><a href="#">CSS</a></li>
-                    <li><a href="#">JavaScript</a></li>
+                  <ul id="occurance_container" class="dropdown-menu">
+                    <!--Adding data from recurring_type table-->
                   </ul>
                 </div>
                 <span class="material-input"></span>
@@ -87,7 +86,7 @@
           </div>
           <div class="category form-category"><small>*</small> Required fields</div>
           <div class="form-footer text-center">
-              <button type="submit" class="btn btn-primary btn-fill">Add Budget</button>
+              <button type="submit" class="btn btn-primary btn-fill">Save</button>
           </div>
         </div>
       </form>
@@ -154,11 +153,37 @@
 </div>
 
 
+<script type="text/javascript">
+  function get_occurances (){
+    $.get("rest/occurances", function( data ) {
+      console.log(data);
+      $('#occurance_container').html('');
+      for(var i=0 ; i < data.length; i++){
+        $('#occurance_container').append(occurance2html(data[i]));
+      }
+    });
+  }
+
+  function occurance2html(occurance){
+    var occurance_html = $('#occurance_template').html();
+    occurance_html = occurance_html.replace('{{name}}', occurance.recurring_type);
+    return occurance_html;
+  }
+</script>
+
+<script id="occurance_template" type="html/template">
+  <li><a href="#">{{name}}</a></li>
+</script>
+
+
+
+
 
 
 <script type="text/javascript">   
-function get_budget(){
-  $.get( "rest/budget", function( data ) {
+
+function get_budget (){
+    $.get( "rest/budget", function( data ) {
     console.log(data);
     $('#budget_container').html('');
     for(var i=0 ; i < data.length; i++){
