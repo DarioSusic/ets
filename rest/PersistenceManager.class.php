@@ -61,6 +61,61 @@ class PersistenceManager {
         $statement->execute($input);
     }
 
+
+    /* TRANSACTIONS */
+        /* EXPENSES */
+    public function edit_expense($input){
+        $query = "UPDATE expenses 
+                SET amount = :amount, 
+                    expense_date = :expense_date, 
+                    description = :description, 
+                    category_id = :category_id, 
+                    expense_time_edit = NOW()
+                WHERE expense_id = :expense_id";
+        $statement = $this->pdo->prepare($query);
+        $statement->execute($input);
+    }
+
+    public function create_expense($input){
+        $query = "INSERT INTO expenses (amount, expense_date, expense_time_creation, description, category_id)
+                    VALUES (:amount, :expense_date, NOW(), :description, :category_id)";
+        $statement = $this->pdo->prepare($query);
+        $statement->execute($input);
+    }
+
+    public function delete_expense($id){
+        $query = "DELETE FROM expenses WHERE expense_id = ?";
+        $statement = $this->pdo->prepare($query);
+        $statement->execute([$id]);
+    }
+    
+        /* EXPENSES */
+    public function edit_income($input){
+        $query = "UPDATE income 
+                SET amount = :amount, 
+                    income_date = :income_date, 
+                    description = :description, 
+                    category_id = :category_id, 
+                    income_time_edit = NOW()
+                WHERE income_id = :income_id";
+        $statement = $this->pdo->prepare($query);
+        $statement->execute($input);
+    }
+
+    public function create_income($input){
+        $query = "INSERT INTO income (amount, income_date, income_time_creation, description, category_id)
+                    VALUES (:amount, :income_date, NOW(), :description, :category_id)";
+        $statement = $this->pdo->prepare($query);
+        $statement->execute($input);
+    }
+
+    public function delete_income($id){
+        $query = "DELETE FROM income WHERE income_id = ?";
+        $statement = $this->pdo->prepare($query);
+        $statement->execute([$id]);
+    }
+
+
     
     /* OCCURANCES */
     public function get_all_occurances(){

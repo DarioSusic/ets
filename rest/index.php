@@ -13,7 +13,7 @@ Flight::route('/', function(){
     Flight::json($cars);
 });
 
-/*All for budget*/
+/*CRUD for budget*/
 
 Flight::route('GET /budget/@id', function($id){
     $budget = Flight::pm()->get_all_budgets($id);
@@ -57,6 +57,80 @@ Flight::route('POST /budget', function(){
     Flight::json(['message' => "Budget has been successfully created"]);
   }
 });
+
+
+/*CRUD for Expenses*/
+
+Flight::route('POST /expense', function(){
+  $request = Flight::request();
+  $expense = Flight::request()->data->expense;
+  $id = Flight::request()->data->expense_id;
+  //print_r($request);
+  if ($id != ''){
+    $input = array(
+      "expense_id" => $id,
+      "amount" => $request->data->amount,
+      "expense_date" => $request->data->expense_date,
+      "description" => $request->data->description,
+      "category_id" => $request->data->category_id
+    );
+    Flight::pm()->edit_expense($input);
+    Flight::json(['message' => "Transaction has been successfully edited"]);
+  }else{
+    $input = array(
+      "amount" => $request->data->amount,
+      "expense_date" => $request->data->expense_date,
+      "description" => $request->data->description,
+      "category_id" => $request->data->category_id
+      );
+    Flight::pm()->create_expense($input);
+    Flight::json(['message' => "Transaction has been successfully created"]);
+  }
+});
+
+
+Flight::route('DELETE /delete_expense/@id', function($id){
+  Flight::pm()->delete_expense($id);
+  Flight::json(['message' => "Transaction id:{$id} has been deleted successfully"]);
+});
+
+
+/*CRUD for Income*/
+
+Flight::route('POST /income', function(){
+  $request = Flight::request();
+  $income = Flight::request()->data->income;
+  $id = Flight::request()->data->income_id;
+  print_r($request);
+  if ($id != ''){
+    $input = array(
+      "income_id" => $id,
+      "amount" => $request->data->amount,
+      "income_date" => $request->data->income_date,
+      "description" => $request->data->description,
+      "category_id" => $request->data->category_id
+    );
+    Flight::pm()->edit_income($input);
+    Flight::json(['message' => "Transaction has been successfully edited"]);
+  }else{
+    $input = array(
+      "amount" => $request->data->amount,
+      "income_date" => $request->data->income_date,
+      "description" => $request->data->description,
+      "category_id" => $request->data->category_id
+      );
+    Flight::pm()->create_income($input);
+    Flight::json(['message' => "Transaction has been successfully created"]);
+  }
+});
+
+
+Flight::route('DELETE /delete_income/@id', function($id){
+  Flight::pm()->delete_income($id);
+  Flight::json(['message' => "Transaction id:{$id} has been deleted successfully"]);
+});
+
+
 
 /*All for categories*/
 
