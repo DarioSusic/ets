@@ -9,6 +9,6 @@ class Config
         'scheme' => 'expense_tracking_system'
     ];
 
-    //const JWT_SECRET = 'secret';
+    const JWT_SECRET = 'secret';
 }
 ?>

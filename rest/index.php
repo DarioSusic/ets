@@ -31,7 +31,7 @@ Flight::route('POST /login', function(){
     $request = Flight::request();
     $db_user = Flight::pm()->get_user_by_email($request->data->email);
     print_r($db_user['password']);
-    /*if ($db_user){
+    if ($db_user){
         if ($db_user['password'] == $request->data->password){
             unset($db_user['password']);
             $token = ["user" => $db_user, "iat" => time(), "exp" => time() + 3600];
@@ -43,7 +43,7 @@ Flight::route('POST /login', function(){
         }
     }else{
         Flight::halt(400, Flight::json(['message' => 'Invalid email address']));
-    }*/
+    }
 });
 
 /*CRUD for budget*/
