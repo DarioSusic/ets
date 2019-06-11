@@ -3,6 +3,8 @@ require '../vendor/autoload.php';
 require_once 'PersistenceManager.class.php';
 require_once 'Config.class.php';
 
+use \Firebase\JWT\JWT;
+
 Flight::register('pm', 'PersistenceManager', [Config::DB]);
 
 //Flight::register('db', 'PDO', array('mysql:host=localhost:3306;dbname=expense_tracking_system','root',''));
@@ -10,10 +12,46 @@ Flight::register('pm', 'PersistenceManager', [Config::DB]);
 Flight::route('/', function(){
     echo 'hello world!';
     //$cars = Flight::db()->query('SHOW tables', PDO::FETCH_ASSOC)->fetchAll();
-    Flight::json($cars);
+    //Flight::json($cars);
+});
+
+/* CRUD for User */
+Flight::route('POST /create_user', function () {
+    $request = Flight::request();
+    $input = array(
+        "name" => $request->data->name,
+        "surname" => $request->data->surname,
+        "email" => $request->data->email,
+        "password" => $request->data->password,
+    );
+    Flight::pm()->create_user($input);
+});
+
+Flight::route('POST /login', function(){
+    $request = Flight::request();
+    $db_user = Flight::pm()->get_user_by_email($request->data->email);
+    print_r($db_user['password']);
+    /*if ($db_user){
+        if ($db_user['password'] == $request->data->password){
+            unset($db_user['password']);
+            $token = ["user" => $db_user, "iat" => time(), "exp" => time() + 3600];
+            $jwt = JWT::encode($token, Config::JWT_SECRET);
+            $db_user['token'] = $jwt;
+            Flight::json($db_user);
+        }else{
+            Flight::halt(400, Flight::json(['message' => 'Invalid password for email address '. $request->data->email]));
+        }
+    }else{
+        Flight::halt(400, Flight::json(['message' => 'Invalid email address']));
+    }*/
 });
 
 /*CRUD for budget*/
+
+Flight::route('GET /budget', function(){
+    $budget = Flight::pm()->get_budgets();
+    Flight::json($budget);
+});
 
 Flight::route('GET /budget/@id', function($id){
     $budget = Flight::pm()->get_all_budgets($id);
@@ -65,6 +103,7 @@ Flight::route('POST /expense', function(){
   $request = Flight::request();
   $expense = Flight::request()->data->expense;
   $id = Flight::request()->data->expense_id;
+  $user_id = 8;
   //print_r($request);
   if ($id != ''){
     $input = array(
@@ -75,6 +114,7 @@ Flight::route('POST /expense', function(){
       "category_id" => $request->data->category_id
     );
     Flight::pm()->edit_expense($input);
+    Flight::pm()->edit_transaction($id);
     Flight::json(['message' => "Transaction has been successfully edited"]);
   }else{
     $input = array(
@@ -83,7 +123,8 @@ Flight::route('POST /expense', function(){
       "description" => $request->data->description,
       "category_id" => $request->data->category_id
       );
-    Flight::pm()->create_expense($input);
+    $dataArray = Flight::pm()->create_expense($input, $user_id);
+    Flight::pm()->create_transaction($dataArray);
     Flight::json(['message' => "Transaction has been successfully created"]);
   }
 });
@@ -91,7 +132,8 @@ Flight::route('POST /expense', function(){
 
 Flight::route('DELETE /delete_expense/@id', function($id){
   Flight::pm()->delete_expense($id);
-  Flight::json(['message' => "Transaction id:{$id} has been deleted successfully"]);
+  Flight::pm()->delete_transaction($id);
+  Flight::json(['message' => "Transaction id: {$id} has been deleted successfully"]);
 });
 
 
@@ -101,6 +143,7 @@ Flight::route('POST /income', function(){
   $request = Flight::request();
   $income = Flight::request()->data->income;
   $id = Flight::request()->data->income_id;
+  $user_id = 8;
   print_r($request);
   if ($id != ''){
     $input = array(
@@ -111,6 +154,7 @@ Flight::route('POST /income', function(){
       "category_id" => $request->data->category_id
     );
     Flight::pm()->edit_income($input);
+    Flight::pm()->edit_transaction($id);
     Flight::json(['message' => "Transaction has been successfully edited"]);
   }else{
     $input = array(
@@ -119,7 +163,8 @@ Flight::route('POST /income', function(){
       "description" => $request->data->description,
       "category_id" => $request->data->category_id
       );
-    Flight::pm()->create_income($input);
+    $dataArray = Flight::pm()->create_income($input, $user_id);
+    Flight::pm()->create_transaction($dataArray);
     Flight::json(['message' => "Transaction has been successfully created"]);
   }
 });
@@ -127,6 +172,7 @@ Flight::route('POST /income', function(){
 
 Flight::route('DELETE /delete_income/@id', function($id){
   Flight::pm()->delete_income($id);
+  Flight::pm()->delete_transaction($id);
   Flight::json(['message' => "Transaction id:{$id} has been deleted successfully"]);
 });
 

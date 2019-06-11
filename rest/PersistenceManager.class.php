@@ -9,12 +9,37 @@ class PersistenceManager {
         $this->pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     }
 
-    
+    /*USER*/
+    public function create_user($input) {
+        $query = "INSERT INTO users(name, 
+                                    surname, 
+                                    email, 
+                                    password,
+                                    date_joined)
+                   VALUES(:name, :surname, :email, :password, NOW())";
+        $statement = $this->pdo->prepare($query);
+        $statement->execute($input);
+        $user_id = $this->pdo->lastInsertId();
+        return $user_id;
+    }
+
+    public function get_user_by_email($email){
+        $query = "SELECT * FROM users WHERE email = ?";
+        $statement = $this->pdo->prepare($query);
+        $statement->execute([$email]);
+        return $statement->fetch();
+    }
+
     /* BUDGET */
     public function delete_budget($id){
         $query = "DELETE FROM budget WHERE budget_id = ?";
         $statement = $this->pdo->prepare($query);
         $statement->execute([$id]);
+    }
+
+    public function get_budgets(){
+        $query = "SELECT * FROM budget";
+        return $this->pdo->query($query)->fetchAll();
     }
 
     public function get_all_budgets($user_id){
@@ -76,20 +101,31 @@ class PersistenceManager {
         $statement->execute($input);
     }
 
-    public function create_expense($input){
+    public function create_expense($input, $user_id){
         $query = "INSERT INTO expenses (amount, expense_date, expense_time_creation, description, category_id)
                     VALUES (:amount, :expense_date, NOW(), :description, :category_id)";
         $statement = $this->pdo->prepare($query);
         $statement->execute($input);
+
+        $expense_id = $this->pdo->lastInsertId();
+        $newArray = array(
+            "user_id" => $user_id,
+            "expense_id" => $expense_id,
+            "income_id" => NULL
+        );
+        return $newArray;
     }
 
     public function delete_expense($id){
-        $query = "DELETE FROM expenses WHERE expense_id = ?";
+        $query = "UPDATE expenses 
+                SET is_deleted = 1, 
+                    income_time_edit = now() 
+                WHERE expense_id = ?";
         $statement = $this->pdo->prepare($query);
         $statement->execute([$id]);
     }
-    
-        /* EXPENSES */
+
+        /* INCOME */
     public function edit_income($input){
         $query = "UPDATE income 
                 SET amount = :amount, 
@@ -102,21 +138,61 @@ class PersistenceManager {
         $statement->execute($input);
     }
 
-    public function create_income($input){
+    public function create_income($input, $user_id){
         $query = "INSERT INTO income (amount, income_date, income_time_creation, description, category_id)
                     VALUES (:amount, :income_date, NOW(), :description, :category_id)";
         $statement = $this->pdo->prepare($query);
         $statement->execute($input);
+
+        $income_id = $this->pdo->lastInsertId();
+        $newArray = array(
+            "user_id" => $user_id,
+            "expense_id" => NULL,
+            "income_id" => $income_id
+        );
+        return $newArray;
     }
 
     public function delete_income($id){
-        $query = "DELETE FROM income WHERE income_id = ?";
+        $query = "UPDATE income 
+                SET is_deleted = 1, 
+                    income_time_edit = now() 
+                WHERE income_id = ?";
+        //$query = "DELETE FROM income WHERE income_id = ?";
+        $statement = $this->pdo->prepare($query);
+        $statement->execute([$id]);
+    }
+    
+        /* TRANSACTION */
+    public function create_transaction($input){
+        $query = "INSERT INTO transactions (user_id, income_id, expense_id, transaction_date_creation)
+                    VALUES (:user_id, :income_id, :expense_id, NOW())";
+        $statement = $this->pdo->prepare($query);
+        $statement->execute($input);
+    }
+
+    public function delete_transaction($id){
+        $income_id = $id;
+        $expense_id = $id;
+        $query = "UPDATE transactions 
+                SET is_deleted = 1, 
+                    transaction_date_edit = now() 
+                WHERE income_id = $income_id OR expense_id = $expense_id";
         $statement = $this->pdo->prepare($query);
         $statement->execute([$id]);
     }
 
+    public function edit_transaction($id){
+        $income_id = $id;
+        $expense_id = $id;
+        $query = "UPDATE transactions 
+                SET transaction_date_edit = now() 
+                WHERE income_id = $income_id OR expense_id = $expense_id";
+        $statement = $this->pdo->prepare($query);
+        $statement->execute([$id]);
+    }
 
-    
+ 
     /* OCCURANCES */
     public function get_all_occurances(){
     	$query = "SELECT * FROM recurring_type";
