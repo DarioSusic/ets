@@ -47,7 +47,7 @@
                           <i class="material-icons">email</i>
                         </span>
                       </div>
-                      <input type="email" class="form-control" placeholder="Email...">
+                      <input type="email" name="email" class="form-control" placeholder="Email...">
                     </div>
                   </span>
                   <span class="bmd-form-group">
@@ -57,7 +57,7 @@
                           <i class="material-icons">lock_outline</i>
                         </span>
                       </div>
-                      <input type="password" class="form-control" placeholder="Password...">
+                      <input name="password" type="password" class="form-control" placeholder="Password...">
                     </div>
                   </span>
                 </div>
@@ -78,6 +78,31 @@
 </body>
 </html>
 
+<script src="assets/js/core/jquery.min.js"></script>
+  <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="assets/js/plugins/material.min.js"></script>
+  <script src="assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+
+  <script src="assets/js/core/popper.min.js"></script>
+  <script src="assets/js/core/bootstrap-material-design.min.js"></script>
+
+  <script src="assets/js/plugins/moment.min.js"></script>
+  
+
+  <!-- Chartist JS -->
+  <script src="assets/js/plugins/chartist.min.js"></script>
+  <!--  Notifications Plugin    -->
+  <script src="assets/js/plugins/bootstrap-notify.js"></script>
+  <!--  Google Maps Plugin    -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBlCB8WMmP8EWU7giPeTz_42uYeF_ZfChg"></script>
+  <!-- Material Dashboard DEMO methods, don't include it in your project! -->
+  <script src="assets/demo/demo.js"></script>
+  <script src="assets/js/material-dashboard.js"></script>
+
+  <script src="assets/js/plugins/jquery.tagsinput.js"></script>
+
+  <script src="assets/js/plugins/nouislider.min.js"></script>
+
 <script>
   (function($){
     function processForm( e ){
@@ -88,7 +113,7 @@
           contentType: 'application/x-www-form-urlencoded',
           data: $(this).serialize(),
           success: function( data, textStatus, jQxhr ){
-            console.log(textStatus)
+            window.location.href="index.html";
           },
           error: function( jqXhr, textStatus, errorThrown ){
               console.log( errorThrown );
