@@ -88,7 +88,8 @@ Flight::route('POST /budget', function(){
         "start_date" => $request->data->start_date,
         "end_date" => $request->data->end_date,
         "created_by" => "IME USERA POKUPITI",
-        "category_id" => $request->data->category_id,        
+        //"category_id" => $request->data->category_id,
+        "category_id" => 48,        
         "user_id" => 10
       );
     Flight::pm()->create_budget($input);

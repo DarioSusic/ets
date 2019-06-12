@@ -11,7 +11,12 @@
 <div class="row">
   <div class="col-md-12">
     <div class="card">
-      <form id="RegisterValidation" action="" method="" novalidate="novalidate">
+      <div class="card-header card-header-primary card-header-icon">
+        <div class="card-icon">
+          <i class="material-icons">credit_card</i>
+        </div>
+      </div>
+      <form id="budget_form" action="rest/budget" method="POST" novalidate="novalidate">
         <div class="card-content">
           <h4 class="card-title">Add Budget</h4>
           <div class="row">
@@ -49,16 +54,13 @@
             </div>
             <div class="col-md-4">
               <div class="form-group label-floating is-empty">
-                <label for="category">Category<small>*</small></label>
-                <div class="dropdown">
-                  <input class="form-control dropdown-toggle" type="button" required="true" aria-required="true" data-toggle="dropdown">
-                  <ul id="category_container" class="dropdown-menu">
-                    <!--Adding data from recurring_type table-->
-                    <li><a href="#">HTML</a></li>
-                    <li><a href="#">CSS</a></li>
-                    <li><a href="#">JavaScript</a></li>
-                  </ul>
-                </div>
+                <label for="category-select">Category<small>*</small></label>
+                <input class="form-control dropdown-toggle" type="button" required="true" name="category_id" aria-required="true" data-toggle="dropdown">
+                  <select id="category-select">
+                    <option value="25">25</option>
+                    <option value="26">Shopping</option>
+                    <option value="48">All Expenses</option>
+                  </select>
                 <span class="material-input"></span>
               </div>
             </div>
@@ -67,7 +69,7 @@
             <div class="col-md-6">
               <div class="form-group label-floating is-empty">
                 <label class="control-label">Amount<small>*</small></label>
-                <input class="form-control" name="budget_amount" type="number" required="true" aria-required="true">
+                <input class="form-control" name="amount" type="number" required="true" aria-required="true">
                 <span class="material-input"></span>
               </div>
             </div>
@@ -75,7 +77,7 @@
               <div class="form-group label-floating is-empty">
                 <label for="category">Occurance<small>*</small></label>
                 <div class="dropdown">
-                  <input class="form-control dropdown-toggle" type="button" required="true" aria-required="true" data-toggle="dropdown">
+                  <input class="form-control dropdown-toggle" type="button" required="true" name=""aria-required="true" data-toggle="dropdown">
                   <ul id="occurance_container" class="dropdown-menu">
                     <!--Adding data from recurring_type table-->
                   </ul>
@@ -183,12 +185,12 @@
 <script type="text/javascript">   
 
 function get_budget (){
-    $.get( "rest/budget", function( data ) {
-    console.log(data);
+    $.get(GET "rest/budget", function( data ) {
+    console.log(data);/*
     $('#budget_container').html('');
     for(var i=0 ; i < data.length; i++){
       $('#budget_container').append(budget2html(data[i]));
-    }
+    }*/
   });
 }
 
@@ -202,6 +204,14 @@ function budget2html(budget){
   budget_html = budget_html.replace('{{created_by}}', budget.created_by);
   return budget_html;
 }
+
+$("#budget_form").validate({
+  submitHandler: function(form) {
+    $(form).ajaxSubmit(function(response){
+      toastr.success(response.message);
+    });
+  }
+});
 </script>
 
 
